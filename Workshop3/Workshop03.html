@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Workshop 3</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        h1, h2 {
+            color: #1d3557;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 8px 12px;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        textarea {
+            width: 400px;
+            max-width: 100%;
+        }
+
+        #preview {
+            border: 1px solid #ccc;
+            padding: 8px;
+            min-height: 40px;
+            background: #fafafa;
+            margin-top: 10px;
+        }
+
+        #keybox {
+            padding: 20px;
+            border: 1px solid #ccc;
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body class="ws3">
+
+    <h1>Workshop 3: JavaScript Events</h1>
+
+    <hr>
+
+    <p>
+        In this workshop, you will practise using JavaScript events.
+    </p>
+
+    <hr>
+
+    <!-- ===================================== -->
+    <!-- EXERCISE 1 -->
+    <!-- ===================================== -->
+
+    <h2 id="exercise1">Exercise 1: Basic Click Events</h2>
+
+    <p>
+        Below you can see two buttons.
+    </p>
+
+    <p>
+        <button onclick="alert('You clicked me!')">
+            Click me
+        </button>
+
+        <button onclick="showTable()">
+            Show Animal table
+        </button>
+    </p>
+
+    <div id="tableContainer"></div>
+
+    <table id="example">
+        <thead>
+            <tr>
+                <th>Animal</th>
+                <th>Habitat</th>
+                <th>Diet</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Tiger</td>
+                <td>Forest</td>
+                <td>Carnivore</td>
+            </tr>
+
+            <tr>
+                <td>Elephant</td>
+                <td>Savanna</td>
+                <td>Herbivore</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- ===================================== -->
+    <!-- EXERCISE 2 -->
+    <!-- ===================================== -->
+
+    <h2 id="exercise2">
+        Exercise 2: Event Listeners and DOM Manipulation
+    </h2>
+
+    <ul>
+        <li>
+            Move your mouse over this heading.
+            Check the browser console.
+        </li>
+
+        <li>
+            Click the Exercise 1 heading.
+        </li>
+    </ul>
+
+    <hr>
+
+    <!-- ===================================== -->
+    <!-- EXERCISE 3 -->
+    <!-- ===================================== -->
+
+    <h2>Exercise 3: Input Events</h2>
+
+    <p>
+        Use the feedback form below to practise input events.
+    </p>
+
+    <h3>Quick Feedback Form</h3>
+
+    <form id="feedbackForm" novalidate>
+
+        <label for="feedback">
+            Feedback:
+        </label>
+
+        <br>
+
+        <textarea id="feedback"
+                  placeholder="Write your feedback..."
+                  rows="5"
+                  maxlength="200"></textarea>
+
+        <br>
+
+        <span id="charcount">
+            0/200
+        </span>
+
+        <span id="status"
+              aria-live="polite"
+              style="margin-left: 8px;"></span>
+
+        <br><br>
+
+        <button id="sendBtn" type="submit">
+            Send
+        </button>
+
+    </form>
+
+    <h3>Preview</h3>
+
+    <div id="preview">
+        (The preview will appear here)
+    </div>
+
+    <hr>
+
+    <!-- ===================================== -->
+    <!-- EXERCISE 4 -->
+    <!-- ===================================== -->
+
+    <h2>Exercise 4: Form Submission</h2>
+
+    <p>
+        Enter between 10 and 200 characters and press Send.
+    </p>
+
+    <hr>
+
+    <!-- ===================================== -->
+    <!-- EXERCISE 5 -->
+    <!-- ===================================== -->
+
+    <h2>Exercise 5: Keyboard Events</h2>
+
+    <h3>Detecting Key Presses</h3>
+
+    <p>
+        Press any key on your keyboard.
+    </p>
+
+    <div id="keybox">
+        Press any key...
+    </div>
+
+    <p id="keyinfo"></p>
+
+    <hr>
+
+    <!-- ===================================== -->
+    <!-- BONUS EXERCISE -->
+    <!-- ===================================== -->
+
+    <h2>Bonus Exercise: Google Maps and Geolocation</h2>
+
+    <h3>Google Maps and Coordinates</h3>
+
+    <p>
+        Example:
+    </p>
+
+    <code>
+        https://www.google.com/maps?q=60.1699,24.9384
+    </code>
+
+    <h3>Finding the User's Location</h3>
+
+    <p>
+        This example uses the Geolocation API.
+    </p>
+
+    <button onclick="getLocation()">
+        Find My Location
+    </button>
+
+    <p id="location"></p>
+
+
+    <!-- ===================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ===================================== -->
+
+    <script>
+
+        // =====================================
+        // EXERCISE 1
+        // =====================================
+
+        function showTable() {
+
+            const animal = "Tiger";
+            const habitat = "Forest";
+            const diet = "Carnivore";
+
+            const table = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Animal</th>
+                                <th>Habitat</th>
+                                <th>Diet</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>${animal}</td>
+                                <td>${habitat}</td>
+                                <td>${diet}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `;
+
+            const destination =
+                document.querySelector("#tableContainer");
+
+            destination.innerHTML = table;
+        }
+
+
+        // =====================================
+        // EXERCISE 2
+        // =====================================
+
+        const exercise2Heading =
+            document.querySelector("#exercise2");
+
+        exercise2Heading.addEventListener(
+            "mouseover",
+            function () {
+
+                console.log(
+                    "Stepped over me with a mouse!"
+                );
+
+            }
+        );
+
+
+        const exercise1Heading =
+            document.querySelector("#exercise1");
+
+        exercise1Heading.addEventListener(
+            "click",
+            function () {
+
+                exercise1Heading.style.color = "red";
+
+                exercise1Heading.innerHTML =
+                    "Bye bye mouse!";
+
+            }
+        );
+
+
+        // =====================================
+        // EXERCISE 3
+        // =====================================
+
+        const feedback =
+            document.querySelector("#feedback");
+
+        const charcount =
+            document.querySelector("#charcount");
+
+        const status =
+            document.querySelector("#status");
+
+        const preview =
+            document.querySelector("#preview");
+
+
+        // Focus event
+
+        feedback.addEventListener(
+            "focus",
+            function () {
+
+                status.innerHTML =
+                    "You are writing feedback.";
+
+                feedback.style.backgroundColor =
+                    "#f0f8ff";
+
+            }
+        );
+
+
+        // Blur event
+
+        feedback.addEventListener(
+            "blur",
+            function () {
+
+                status.innerHTML = "";
+
+                feedback.style.backgroundColor = "";
+
+            }
+        );
+
+
+        // Input event
+
+        feedback.addEventListener(
+            "input",
+            function () {
+
+                const text = feedback.value;
+
+                const length = text.length;
+
+                charcount.innerHTML =
+                    length + "/200";
+
+                if (text.length > 0) {
+
+                    preview.innerHTML = text;
+
+                } else {
+
+                    preview.innerHTML =
+                        "(The preview will appear here)";
+
+                }
+
+            }
+        );
+
+
+        // =====================================
+        // EXERCISE 4
+        // =====================================
+
+        const feedbackForm =
+            document.querySelector("#feedbackForm");
+
+
+        feedbackForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                const text =
+                    feedback.value.trim();
+
+
+                if (
+                    text.length < 10 ||
+                    text.length > 200
+                ) {
+
+                    status.innerHTML =
+                        "Please enter between 10 and 200 characters.";
+
+                    status.style.color = "red";
+
+                    return;
+                }
+
+
+                status.innerHTML =
+                    "Thank you for your feedback!";
+
+                status.style.color = "green";
+
+
+                feedback.value = "";
+
+                charcount.innerHTML =
+                    "0/200";
+
+                preview.innerHTML =
+                    "(The preview will appear here)";
+
+            }
+        );
+
+
+        // =====================================
+        // EXERCISE 5
+        // =====================================
+
+        const keybox =
+            document.querySelector("#keybox");
+
+        const keyinfo =
+            document.querySelector("#keyinfo");
+
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                console.log(event);
+
+                keyinfo.innerHTML =
+                    "Key: " +
+                    event.key +
+                    " | Code: " +
+                    event.code;
+
+                keybox.innerHTML =
+                    event.key;
+
+            }
+        );
+
+
+        // =====================================
+        // BONUS: GEOLOCATION
+        // =====================================
+
+        function getLocation() {
+
+            const locationText =
+                document.querySelector("#location");
+
+
+            if (!navigator.geolocation) {
+
+                locationText.innerHTML =
+                    "Geolocation is not supported by your browser.";
+
+                return;
+            }
+
+
+            locationText.innerHTML =
+                "Getting your location...";
+
+
+            navigator.geolocation.getCurrentPosition(
+
+                function (position) {
+
+                    const lat =
+                        position.coords.latitude;
+
+                    const lon =
+                        position.coords.longitude;
+
+
+                    locationText.innerHTML =
+                        "Latitude: " +
+                        lat +
+                        "<br>Longitude: " +
+                        lon +
+                        "<br><br>" +
+                        "<a href='https://www.google.com/maps?q=" +
+                        lat +
+                        "," +
+                        lon +
+                        "' target='_blank'>" +
+                        "Open location in Google Maps" +
+                        "</a>";
+
+                },
+
+                function (error) {
+
+                    locationText.innerHTML =
+                        "Could not get your location: " +
+                        error.message;
+
+                }
+
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
