@@ -25,7 +25,7 @@ Web links
 
 - Published application: https://deelipstha.github.io/web-development-course/DOM%20Scripting/
 - GitHub repository: https://github.com/deelipstha/web-development-course
-- Demo video: 
+- Demo video: https://youtu.be/P5M87L6GK4c
 
 About the application
 This application helps users keep track of their daily tasks. It is designed to be simple and easy to use.
