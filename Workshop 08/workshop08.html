@@ -1,0 +1,154 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Workshop 8 - Weather App</title>
+
+    <!-- CSS styling -->
+    <link rel="stylesheet" href="../WS07_AJAX/css/styles.css">
+
+    <style>
+        body.ws8 {
+            font-family: Arial, sans-serif;
+            background: #eaf3ff;
+            color: #263445;
+            padding: 25px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #1769aa;
+            text-align: center;
+        }
+
+        h2 {
+            color: #1769aa;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        select, input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin: 8px 5px;
+            font-size: 15px;
+        }
+
+        button {
+            background: #1769aa;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+            button:hover {
+                background: #104c80;
+            }
+
+        #weatherdata {
+            background: #f0f7ff;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 10px;
+            min-height: 80px;
+            line-height: 1.8;
+        }
+
+            #weatherdata h2 {
+                color: #1769aa;
+            }
+
+        .weather-title {
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            color: #777;
+            margin-top: 30px;
+            font-size: 13px;
+        }
+    </style>
+
+    <!-- JavaScript file -->
+    <script src="script.js" defer></script>
+
+</head>
+
+<body class="ws8">
+
+    <div class="container">
+
+        <h1>🌤️ Workshop 8: Weather App</h1>
+
+        <hr>
+
+        <p>
+            Welcome to my weather application!
+            You can check the weather in different cities
+            using the OpenWeatherMap API.
+        </p>
+
+        <h2>🌍 Select a city</h2>
+
+        <p>Choose a city from the dropdown menu:</p>
+
+        <!-- City dropdown -->
+        <select name="mySelect" id="city">
+            <option value="Helsinki">Helsinki</option>
+            <option value="Stockholm">Stockholm</option>
+            <option value="Rome">Rome</option>
+            <option value="New York">New York</option>
+        </select>
+
+        <!-- Fetch button -->
+        <button id="fetchWeather">
+            Fetch data
+        </button>
+
+        <hr>
+
+        <h2>🔎 Search for a city</h2>
+
+        <p>Enter another city name:</p>
+
+        <input type="text"
+               id="citysearch"
+               placeholder="Example: London">
+
+        <button id="search">
+            Search
+        </button>
+
+        <hr>
+
+        <h2 class="weather-title">🌦️ Weather Information</h2>
+
+        <!-- Weather information appears here -->
+        <div id="weatherdata">
+            Weather information will appear here.
+        </div>
+
+        <div class="footer">
+            <p>Workshop 8 - Parsing XML with JavaScript</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
