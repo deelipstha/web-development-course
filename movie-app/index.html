@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finnkino Live Movie Schedule</title>
+    <!-- Link to our CSS file for styling -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🎬 Finnkino Live Movie App</h1>
+        <p>Select a theater or search for a movie below</p>
+    </header>
+
+    <main>
+        <!-- Controls Section: Dropdown + Custom Search Input -->
+        <section class="controls">
+            <div class="control-group">
+                <label for="theater-select">Choose Theater:</label>
+                <select id="theater-select">
+                    <option value="">Loading theaters...</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="search-input">Search Movie Title:</label>
+                <input type="text" id="search-input" placeholder="Type to filter movies...">
+            </div>
+        </section>
+
+        <!-- Status message for loading or errors -->
+        <div id="status-message" class="status"></div>
+
+        <!-- Container where movie cards will be displayed dynamically -->
+        <section id="movies-container" class="movies-grid"></section>
+    </main>
+
+    <!-- Link to our JavaScript file -->
+    <script src="app.js"></script>
+</body>
+</html>
